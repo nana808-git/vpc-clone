@@ -1,7 +1,7 @@
 resource "aws_subnet" "public_subnet_ap-northeast-1a" {
   count = "${var.vpc_count}"
 
-  vpc_id                  = "${aws_vpc.cluster_vpc.id}"
+  vpc_id                  = "${aws_vpc.cluster_vpc[count.index]}"
   cidr_block              = "10.0.0.0/20"
   map_public_ip_on_launch = true
   availability_zone       = "ap-northeast-1a"
@@ -13,7 +13,7 @@ resource "aws_subnet" "public_subnet_ap-northeast-1a" {
 
 resource "aws_subnet" "public_subnet_ap-northeast-1b" {
   count                   = "${var.vpc_count}"
-  vpc_id                  = "${aws_vpc.cluster_vpc.id}"
+  vpc_id                  = "${aws_vpc.cluster_vpc[count.index]}"
   cidr_block              = "10.0.16.0/20"
   map_public_ip_on_launch = true
   availability_zone       = "ap-northeast-1c"
