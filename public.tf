@@ -25,12 +25,12 @@ resource "aws_subnet" "public_subnet_ap-northeast-1b" {
 
 resource "aws_route_table_association" "public_subnet_ap-northeast-1a_association" {
   count          = "${var.vpc_count}"
-  subnet_id      = "${aws_subnet.public_subnet_ap-northeast-1a.id}"
-  route_table_id = "${aws_vpc.cluster_vpc.main_route_table_id}"
+  subnet_id      = "${aws_subnet.public_subnet_ap-northeast-1a[count.index].id}"
+  route_table_id = "${aws_vpc.cluster_vpc[count.index].main_route_table_id}"
 }
 
 resource "aws_route_table_association" "public_subnet_ap-northeast-1b_association" {
   count          = "${var.vpc_count}"
-  subnet_id      = "${aws_subnet.public_subnet_ap-northeast-1b.id}"
-  route_table_id = "${aws_vpc.cluster_vpc.main_route_table_id}"
+  subnet_id      = "${aws_subnet.public_subnet_ap-northeast-1b[count.index].id}"
+  route_table_id = "${aws_vpc.cluster_vpc[count.index].main_route_table_id}"
 }
