@@ -1,5 +1,5 @@
 resource "aws_vpc" "cluster_vpc" {
-  count = "${var.vpc_count}"
+  #count = "${var.vpc_count}"
 
   cidr_block           = "10.0.0.0/16"
   enable_dns_support   = true
