@@ -12,7 +12,7 @@ resource "aws_vpc" "cluster_vpc" {
 
 resource "aws_internet_gateway" "gw" {
   count  = "${var.vpc_count}"
-  vpc_id = "${aws_vpc.cluster_vpc[count.index]}"
+  vpc_id = "${aws_vpc.cluster_vpc.id}"
 
   tags {
     Name = "InternetGateway"
