@@ -21,9 +21,9 @@ resource "aws_internet_gateway" "gw" {
 
 resource "aws_route" "internet_access" {
   count                  = "${var.vpc_count}"
-  route_table_id         = "${aws_vpc.cluster_vpc.main_route_table_id}"
+  route_table_id         = "${aws_vpc.cluster_vpc[count.index].main_route_table_id}"
   destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = "${aws_internet_gateway.gw.id}"
+  gateway_id             = "${aws_internet_gateway.gw[count.index].id}"
 }
 
 resource "aws_eip" "vpc_eip" {
